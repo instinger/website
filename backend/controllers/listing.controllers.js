@@ -64,7 +64,7 @@ const updateListing = asyncHandler(async(req,res)=>{
         if(!listing)
             return res.ststus(500).json(new ApiError(500,null,"listing cannot be updated"));
 
-        if(req.user._id !== listing.userRef)
+        if(req.user._id.toString() !== listing.userRef)
             return res.status(401).json(new ApiError(401,null,"you are not authorized to update this listing")); 
 
         return res.status(200).json(
