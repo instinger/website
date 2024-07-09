@@ -14,4 +14,6 @@ router.route("/signout").get(verifyJWT,signOut);
 router.route("/listings/:id").get(verifyJWT,getUserListings);
 
 
+
+
 export default router;

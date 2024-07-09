@@ -11,8 +11,6 @@ const Signup = () => {
 
     const navigate = useNavigate();
 
-    console.log(error,"===error===");
-
 
     const handleChange = (e) => {
         setFormData({

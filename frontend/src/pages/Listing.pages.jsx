@@ -10,9 +10,6 @@ import { FaShare } from "react-icons/fa";
 const Listing = () => {
 
 
-    SwiperCore.use([Navigation]);
-
-
     const [listing,setListing] = useState(null);
     const [loading,setLoading] = useState(false);
     const [error,setError] = useState(null);
@@ -22,6 +19,39 @@ const Listing = () => {
     const {currentUser} = useSelector((state)=>state.user);
 
     const params = useParams();
+
+    useEffect(()=>{
+        const fetchListing = async()=>{
+            try {
+                setLoading(true);
+                const res = await fetch(`/api/listing/${params.listingId}`);
+                const data = await res.json();
+
+                if(data.success === false){
+                    setError(true);
+                    setLoading(false);
+                    return;
+                }   
+
+                const formattedDate = new Date(data.data.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                data.data.date = formattedDate;
+
+                setListing(data.data);
+                setLoading(false);
+                setError(false);
+            } catch (error) {
+                setError(true);
+                setLoading(false);
+            }
+        }
+
+        fetchListing();
+    },[params.listingId])
 
     useEffect(()=>{
         const fetchListing = async()=>{

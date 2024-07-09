@@ -96,7 +96,48 @@ const getListing = asyncHandler(async(req,res)=>{
     }
 })
 
+const getSingleListing = asyncHandler(async (req, res) => {
+    try {
+      const listing = await Listing.findById(req.params.id);
+      if (!listing) {
+        return res.status(404).json(
+          new ApiError(404, null, "Listing not found")
+        );
+      }
+      return res.status(200).json(
+        new ApiResponse(200, listing, "Listing retrieved successfully")
+      );
+    } catch (error) {
+      return res.status(500).json(
+        new ApiError(500, null, error.message)
+      );
+    }
+  });
+
+
+const showListing = asyncHandler(async(req,res)=>{
+
+    try {
+        const {startIndex=0,limit=9} = req.query;
+    
+        const listings = await Listing.find().sort({date:1}).skip(parseInt(startIndex)).limit(parseInt(limit));
+    
+        if(!listings)
+            return res.status(401).json(
+                new ApiResponse(401,null,"listings not found")
+            );
+        
+        return res.status(200).json(
+            new ApiResponse(200,listings,"listings found successfully")
+        )
+    } catch (error) {
+        return res.status(500).json(
+            new ApiResponse(500,null,error.message))
+    }
+
+})
 
 
 
-export {createListing,deleteListing,updateListing,getListing};
+
+export {createListing,deleteListing,updateListing,getListing,showListing,getSingleListing};

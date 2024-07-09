@@ -13,8 +13,8 @@ const Header = () => {
             <div className="flex justify-between items-center max-w-6xl mx-auto p-6">
                 <Link to="/">
                     <h1 className="font-bold text-smm sm:text-xl flex flex-wrap cursor-pointer">
-                        <span className="text-slate-500">Ins</span>
-                        <span className="text-slate-700">tinger</span>
+                        <span className="text-slate-500 text-xl">Ins</span>
+                        <span className="text-slate-700 text-xl">tinger</span>
                     </h1>
                 </Link>
 
@@ -22,6 +22,7 @@ const Header = () => {
                     <Link to="/"><li className="hidden sm:inline text-slate-700 hover:text-slate-500 cursor-pointer">Home</li></Link>
                     <Link to="/about"><li className="hidden sm:inline text-slate-700 hover:text-slate-500 cursor-pointer">About</li></Link>
                     <Link to="/service"><li className="hidden sm:inline text-slate-700 hover:text-slate-500 cursor-pointer">Service</li></Link>
+                    <Link to="/portfolio"><li className="hidden sm:inline text-slate-700 hover:text-slate-500 cursor-pointer">Portfolio</li></Link>
                     <Link to="/blog"><li className="hidden sm:inline text-slate-700 hover:text-slate-500 cursor-pointer">Blog</li></Link>
                     <Link to="/contact"><li className="hidden sm:inline text-slate-700 hover:text-slate-500 cursor-pointer">Contact</li></Link>
 

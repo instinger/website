@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUserFailure, deleteUserStart, deleteUserSuccess, 
@@ -8,14 +7,15 @@ from "../redux/user/userSlice";
 import { Link } from "react-router-dom";
 
 
+
+
 const Profile = () => {
 
     const {currentUser,loading,error} = useSelector((state) => state.user);
 
-    console.log(loading,"===loading===");
+    console.log(currentUser,"===currentuser===");
 
-    const [file,setFile] = useState(null);
-    const [fileChange,setFileChange] = useState(0);
+
     const [formData,setFormData] = useState({});
     const [updateSuccess,setUpdateSuccess] = useState(false);
     const [showImageListingError,setShowImageListingError] = useState(false);
@@ -109,6 +109,11 @@ const Profile = () => {
             dispatch(signOutUserFailure(error.errors));
         }
     }
+
+
+    
+
+
 
     const handleShowListing = async() => {
 

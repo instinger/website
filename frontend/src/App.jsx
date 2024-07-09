@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useEffect } from "react";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Header from "./components/Header.components";
 import Home from "./pages/Home.pages";
@@ -14,14 +14,18 @@ import Profile from "./pages/Profile.pages";
 import CreateListing from "./pages/CreateListing.pages";
 import Listing from "./pages/Listing.pages";
 import UpdateListing from "./pages/UpdateListing.pages";
+import Portfolio from "./pages/Portfolio.pages";
+import Footer from "./components/Footer.components";
 
 const App = () => {
+
   return <BrowserRouter>
      <Header/>
      <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/service" element={<Service />}/>
+      <Route path="/portfolio" element={<Portfolio />}/>
       <Route path="/blog" element={<Blog />}/>
       <Route path="/contact" element={<Contact />} />
       <Route path="/signin" element={<Signin />}/>
@@ -33,7 +37,7 @@ const App = () => {
         <Route path="/update-listing/:listingId" element={<UpdateListing />} />
        </Route>
      </Routes>
-     <Footercomponent/>
+     <Footer/>
   </BrowserRouter>
 }
 

@@ -1,10 +1,11 @@
 import React from "react";
+import TestimonialMarquee from "../components/Testimonial.components";
 
 
 const About = () => {
     return(
         <div className="mx-auto">
-            <h1 className="text-center text-3xl font-semibold p-6 mt-7">About Us</h1>
+            <h1 className="text-center text-slate-700 text-4xl font-bold p-6 mt-7">About Us</h1>
 
             <div className="flex flex-col sm:flex-row">
                 <div className="flex flex-col mx-auto">
@@ -17,6 +18,20 @@ const About = () => {
                     <img src="https://instinger.com/wp-content/uploads/2023/10/Ellipse-1-copy-5.png" alt="image" />
                 </div>
             </div>
+
+
+            <div className="div">
+                <div className="div"></div>
+                <div className="div"></div>
+            </div>
+
+
+
+           <div className="text-center mt-16">
+            <h2 className="text-4xl font-bold text-slate-700">From our Customers</h2>
+              <div className="mt-5"> <TestimonialMarquee /></div>
+           </div>
+
         </div>
     )
 }
