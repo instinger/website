@@ -12,6 +12,7 @@ router.route("/update/:id").put(verifyJWT,updateUser);
 router.route("/delete/:id").delete(verifyJWT,deleteUser);
 router.route("/signout").get(verifyJWT,signOut);
 router.route("/listings/:id").get(verifyJWT,getUserListings);
+router.route("/refresh-token").post(verifyJWT,refreshToken);
 
 
 export default router;
