@@ -158,12 +158,13 @@ const deleteUser = asyncHandler(async(req,res)=>{
 
 const signOut = asyncHandler(async(req,res)=> {
 
-
+    if(req.user){
         await User.findByIdAndUpdate(req.user._id, {
           $unset: {
             accessToken: 1,
           }
         }, { new: true });
+    }
     
 
     const options = {
