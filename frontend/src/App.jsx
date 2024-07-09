@@ -18,6 +18,11 @@ import Portfolio from "./pages/Portfolio.pages";
 import Footer from "./components/Footer.components";
 
 const App = () => {
+
+  useEffect(()=>{
+    checkTokenExpiration();
+  },[])
+
   return <BrowserRouter>
      <Header/>
      <Routes>

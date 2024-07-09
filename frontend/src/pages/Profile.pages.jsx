@@ -7,6 +7,39 @@ from "../redux/user/userSlice";
 import { Link } from "react-router-dom";
 
 
+const refreshToken = async () => {
+    try {
+      const res = await fetch("/api/user/refresh-token", { method: "POST" });
+      const data = await res.json();
+      if (data.success) {
+        localStorage.setItem("accessToken", data.accessToken);
+      } else {
+        handleSignOut();
+      }
+    } catch (error) {
+      console.error("Error refreshing token:", error);
+      handleSignOut();
+    }
+  };
+
+export const checkTokenExpiration = () => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
+      const currentTime = Date.now();
+  
+      if (currentTime >= expirationTime) {
+        refreshToken();
+      } else {
+        // Set a timeout to refresh the token just before it expires
+        const timeUntilExpiration = expirationTime - currentTime;
+        setTimeout(refreshToken, timeUntilExpiration - 60000); // Refresh 1 minute before expiration
+      }
+    }
+  };
+
+
 const Profile = () => {
 
     const {currentUser,loading,error} = useSelector((state) => state.user);
