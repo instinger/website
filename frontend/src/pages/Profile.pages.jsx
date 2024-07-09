@@ -179,7 +179,7 @@ const Profile = () => {
         </div>
 
         <p className="text-red-700 mt-5">{error?error.message:""}</p>
-        <p className="text-red-700 mt-5">{updateSuccess?"user updated Ssuccessfully":""}</p>
+        <p className="text-green-700 mt-5">{updateSuccess?"user updated Successfully":""}</p>
         <button onClick={handleShowListing} className="text-green-700 w-full">Show Listing</button>
         <p className="text-red-700 mt-5">{showImageListingError?"Error showing listing":""}</p>
 

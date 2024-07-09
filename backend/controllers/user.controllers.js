@@ -3,6 +3,7 @@ import {ApiError} from "../utils/ApiError.js";
 import {ApiResponse} from "../utils/ApiResponse.js";
 import {User} from "../models/user.models.js";
 import { Listing } from "../models/listing.model.js";
+import bcrypt from "bcryptjs";
 
 
 
@@ -99,15 +100,21 @@ const updateUser = asyncHandler(async(req,res)=>{
         return res.status(403).json(new ApiError(403,null,"you are not authorized to update this user"));
 
     try {
-      
+
+        if(req.body.password){
+            req.body.password = bcrypt.hashSync(req.body.password, 10);
+        }
+        
+       
         const user = await User.findByIdAndUpdate(req.params.id,{
             $set:{
                 username:req.body.username,
                 email:req.body.email,
-                password:req.body.password,
+                password:req.body.password
             }
         },{new:true});
 
+    
         if(!user){
             return res.status(500).json(
                 new ApiError(500,null,"something went wrong while updating user")
