@@ -11,7 +11,6 @@ const Profile = () => {
 
     const {currentUser,loading,error} = useSelector((state) => state.user);
 
-    console.log(currentUser,"===currentuser===");
 
 
     const [formData,setFormData] = useState({});
@@ -21,6 +20,8 @@ const Profile = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    console.log(formData,"===currentuser===");
 
     const handleChange = (e) => {
         setFormData({
@@ -32,7 +33,7 @@ const Profile = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        // console.log("Current user ID:", currentUser._id);
+         console.log("Current user:", currentUser);
 
         try {
 
@@ -170,7 +171,11 @@ const Profile = () => {
         <button disabled={loading} className="bg-slate-700 p-3 rounded-lg text-white uppercase hover:opacity-95 disabled:opacity-80">{loading ? "updating... " : "Update"}</button>
 
 
-        <Link className="bg bg-green-700 p-3 text-center text-white uppercase rounded-lg hover:opacity-95" to={"/create-listing"}>create Listing</Link>
+        {currentUser?.data?.role === "admin" && (
+            <Link className="bg bg-green-700 p-3 text-center text-white uppercase rounded-lg hover:opacity-95" to={"/create-listing"}>create Listing</Link>
+        )}
+
+       
 
         </form>
         <div className="flex justify-between mt-5">
@@ -178,12 +183,29 @@ const Profile = () => {
          <span onClick={handleSignOut} className="text-red-700 cursor-pointer">Sign out</span>
         </div>
 
+
+
         <p className="text-red-700 mt-5">{error?error.message:""}</p>
         <p className="text-green-700 mt-5">{updateSuccess?"user updated Successfully":""}</p>
-        <button onClick={handleShowListing} className="text-green-700 w-full">Show Listing</button>
+
+
+        {currentUser?.data?.role === "admin" && (
+
+            <button onClick={handleShowListing} className="text-green-700 w-full">Show Listing</button>  
+
+        )}
+
+        {currentUser?.data?.role === "admin" && (
+
         <p className="text-red-700 mt-5">{showImageListingError?"Error showing listing":""}</p>
 
-        {
+        )}
+        
+
+
+       
+
+        { currentUser.data?.role === "admin" &&
             userListings && userListings.length>0 && (
                 <div className="flex flex-col gap-4">
                     <h1 className="text-center mt-7 text-2xl font-semibold">Your Listed Blogs</h1>
@@ -210,6 +232,10 @@ const Profile = () => {
                 </div>
             )
         }
+
+
+
+
 
     </div>
     )
