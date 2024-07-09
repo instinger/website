@@ -159,11 +159,14 @@ const deleteUser = asyncHandler(async(req,res)=>{
 const signOut = asyncHandler(async(req,res)=> {
 
 
-    await User.findByIdAndUpdate(req.user._id,{
-        $unset:{
-            accessToken:1,
-        }
-    },{new:true});
+    if (req.user) {
+        await User.findByIdAndUpdate(req.user._id, {
+          $unset: {
+            accessToken: 1,
+          }
+        }, { new: true });
+      }
+    
 
     const options = {
         httpOnly:true,
@@ -178,6 +181,30 @@ const signOut = asyncHandler(async(req,res)=> {
     );
 
 })
+
+
+const refreshToken = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+     return res.status(401).json(new ApiError(401, null, "User not found"));
+    }
+  
+    const accessToken = user.generateAccessToken();
+  
+    await User.findByIdAndUpdate(user._id, {
+      $set: { accessToken }
+    });
+  
+    const options = {
+      httpOnly: true,
+      secure: true
+    };
+  
+    return res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .json(new ApiResponse(200, { accessToken }, "Access token refreshed"));
+  });
 
 
 const getUserListings = asyncHandler(async(req,res)=>{
