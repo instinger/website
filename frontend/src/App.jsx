@@ -10,12 +10,17 @@ import Signin from "./pages/Signin.pages";
 import Footercomponent from "./components/Footer.components";
 import Signup from "./pages/Signup.pages";
 import PrivateRoute from "./components/PrivateRoute.components";
-import Profile from "./pages/Profile.pages";
+import Profile, { checkTokenExpiration } from "./pages/Profile.pages";
 import CreateListing from "./pages/CreateListing.pages";
 import Listing from "./pages/Listing.pages";
 import UpdateListing from "./pages/UpdateListing.pages";
 
 const App = () => {
+
+   useEffect(() => {
+     checkTokenExpiration();
+  },[]);
+  
   return <BrowserRouter>
      <Header/>
      <Routes>
