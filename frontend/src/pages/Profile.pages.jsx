@@ -21,8 +21,6 @@ const Profile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log(formData,"===currentuser===");
-
     const handleChange = (e) => {
         setFormData({
             ...formData,
