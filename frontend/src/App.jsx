@@ -7,10 +7,9 @@ import Contact from "./pages/Contact.pages";
 import Service from "./pages/Service.pages";
 import Blog from "./pages/Blog.pages";
 import Signin from "./pages/Signin.pages";
-import Footercomponent from "./components/Footer.components";
 import Signup from "./pages/Signup.pages";
 import PrivateRoute from "./components/PrivateRoute.components";
-import Profile, { checkTokenExpiration } from "./pages/Profile.pages";
+import Profile from "./pages/Profile.pages";
 import CreateListing from "./pages/CreateListing.pages";
 import Listing from "./pages/Listing.pages";
 import UpdateListing from "./pages/UpdateListing.pages";
@@ -19,9 +18,7 @@ import Footer from "./components/Footer.components";
 
 const App = () => {
 
-  useEffect(()=>{
-    checkTokenExpiration();
-  },[])
+ 
 
   return <BrowserRouter>
      <Header/>

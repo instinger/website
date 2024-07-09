@@ -156,54 +156,15 @@ const deleteUser = asyncHandler(async(req,res)=>{
 })
 
 
-const signOut = asyncHandler(async(req,res)=> {
-
-    if(req.user){
-        await User.findByIdAndUpdate(req.user._id, {
-          $unset: {
-            accessToken: 1,
-          }
-        }, { new: true });
+const signOut = async (req, res, next) => {
+    try {
+      res.clearCookie('accessToken');
+      res.status(200).json('User has been logged out!');
+    } catch (error) {
+      next(error);
     }
-    
+  };
 
-    const options = {
-        httpOnly:true,
-        secure:true,
-        sameSite: 'strict', 
-        expires: new Date(0)
-    }
-
-
-    return res.status(200).clearCookie("accessToken",options).json(
-        new ApiResponse(200,{},"user logged out successfully")
-    );
-
-})
-
-
-const refreshToken = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id);
-    if (!user) {
-     return res.status(401).json(new ApiError(401, null, "User not found"));
-    }
-  
-    const accessToken = user.generateAccessToken();
-  
-    await User.findByIdAndUpdate(user._id, {
-      $set: { accessToken }
-    });
-  
-    const options = {
-      httpOnly: true,
-      secure: true
-    };
-  
-    return res
-      .status(200)
-      .cookie("accessToken", accessToken, options)
-      .json(new ApiResponse(200, { accessToken }, "Access token refreshed"));
-  });
 
 
 
@@ -256,4 +217,4 @@ const getUser = asyncHandler(async(req,res)=>{
 
 
 
-export {generateAccessToken,register,login,updateUser,deleteUser,signOut,getUserListings,getUser,refreshToken};
+export {generateAccessToken,register,login,updateUser,deleteUser,signOut,getUserListings,getUser};

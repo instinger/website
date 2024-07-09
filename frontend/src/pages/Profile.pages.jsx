@@ -4,40 +4,7 @@ import { deleteUserFailure, deleteUserStart, deleteUserSuccess,
          signOutUserFailure, signOutUserStart, signOutUserSuccess, 
          updateUserFailure, updateUserStart, updateUserSuccess } 
 from "../redux/user/userSlice";
-import { Link } from "react-router-dom";
-
-
-const refreshToken = async () => {
-    try {
-      const res = await fetch("/api/user/refresh-token", { method: "POST" });
-      const data = await res.json();
-      if (data.success) {
-        localStorage.setItem("accessToken", data.accessToken);
-      } else {
-        handleSignOut();
-      }
-    } catch (error) {
-      console.error("Error refreshing token:", error);
-      handleSignOut();
-    }
-  };
-
-export const checkTokenExpiration = () => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      const decodedToken = JSON.parse(atob(token.split('.')[1]));
-      const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
-      const currentTime = Date.now();
-  
-      if (currentTime >= expirationTime) {
-        refreshToken();
-      } else {
-        // Set a timeout to refresh the token just before it expires
-        const timeUntilExpiration = expirationTime - currentTime;
-        setTimeout(refreshToken, timeUntilExpiration - 60000); // Refresh 1 minute before expiration
-      }
-    }
-  };
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 
 const Profile = () => {
@@ -53,6 +20,7 @@ const Profile = () => {
     const [userListings,setUserListings] = useState([]);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -121,25 +89,31 @@ const Profile = () => {
 
     }
 
-    const handleSignOut = async() => {
-
+    const handleSignOut = async () => {
         try {
             dispatch(signOutUserStart());
-            const res = await fetch("/api/user/signout");
+            const res = await fetch("/api/user/signout", {
+                method: "GET",
+                credentials: "include"
+            });
             const data = await res.json();
-
-            if(data.success === false){
-                dispatch(signOutUserFailure(data.errors));
-                return;
+        
+            if (data.success === false) {
+                dispatch(signOutUserFailure(data.message));
+            } else {
+                dispatch(signOutUserSuccess());
+                localStorage.removeItem("accessToken");
+                // Redirect to login page or home page
+                navigate("/login");
             }
-
-            dispatch(signOutUserSuccess(data));
-            
         } catch (error) {
-            console.log(error);
-            dispatch(signOutUserFailure(error.errors));
+            console.error("Sign out error:", error);
+            dispatch(signOutUserFailure("An error occurred during sign out"));
+            // Still remove the token and redirect on error
+            localStorage.removeItem("accessToken");
+            navigate("/login");
         }
-    }
+    };
 
 
     
