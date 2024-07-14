@@ -1,6 +1,7 @@
 import React from "react";
 import TestimonialMarquee from "../components/Testimonial.components";
 import about2 from "../assets/about2.png";
+import aboutUs from "../assets/aboutUs.png";
 
 const About = () => {
     return (
@@ -15,7 +16,7 @@ const About = () => {
                     <p className="text-slate-500 text-sm sm:text-base p-2 sm:p-3">Today, we stand as a beacon of innovation, driving success for our clients through website/app development and digital marketing expertise. Our core believe is to provide satisfactory User Experience to our clients.</p>
                 </div>
                 <div className="flex justify-center items-center">
-                    <img src="https://instinger.com/wp-content/uploads/2023/10/Ellipse-1-copy-5.png" alt="image" className="max-w-full h-auto" />
+                    <img src={aboutUs} alt="image" className="max-w-full h-auto" />
                 </div>
             </div>
 
