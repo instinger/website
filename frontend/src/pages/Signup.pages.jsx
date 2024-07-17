@@ -28,7 +28,7 @@ const Signup = () => {
 
          setLoading(true);
          
-         const res = await fetch("/api/user/register",{
+         const res = await fetch("https://backend.instinger.com/api/user/register",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

@@ -33,7 +33,7 @@ const UpdateListing = () => {
     useEffect(()=>{
             const fetchListing = async()=>{
                 const listingId = params.listingId;
-                const res = await fetch(`/api/listing/get/${listingId}`);
+                const res = await fetch(`https://backend.instinger.com/api/listing/get/${listingId}`);
                 const data = await res.json();
 
                 if(data.success === false){
@@ -123,7 +123,7 @@ const UpdateListing = () => {
             setLoading(true);
             setError(false);
 
-            const res = await fetch(`/api/listing/update/${params.listingId}`,{
+            const res = await fetch(`https://backend.instinger.com/api/listing/update/${params.listingId}`,{
                 method:"PUT",
                 headers:{
                     "Content-Type":"application/json",

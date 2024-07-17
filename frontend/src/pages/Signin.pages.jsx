@@ -31,7 +31,7 @@ const Signin = () => {
             
            dispatch(signInStart());
             
-            const res = await fetch("/api/user/login",
+            const res = await fetch("https://backend.instinger.com/api/user/login",
                 {
                     method:"POST",
                     headers:{

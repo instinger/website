@@ -22,7 +22,7 @@ const Home = () => {
 
     useEffect(()=>{
         const fetchListing = async() => {
-            const res = await fetch(`/api/listing/get?startIndex=${startIndex}&limit=${limit}`);
+            const res = await fetch(`https://backend.instinger.com/api/listing/get?startIndex=${startIndex}&limit=${limit}`);
             const data = await res.json();
             setListing(data.data);
         }

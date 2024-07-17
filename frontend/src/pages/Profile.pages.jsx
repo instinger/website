@@ -36,7 +36,7 @@ const Profile = () => {
         try {
 
             dispatch(updateUserStart());
-            const res = await fetch(`/api/user/update/${currentUser.data._id}`,{
+            const res = await fetch(`https://backend.instinger.com/api/user/update/${currentUser.data._id}`,{
                 method:"PUT",
                 headers:{
                     "Content-Type":"application/json"
@@ -66,7 +66,7 @@ const Profile = () => {
 
             dispatch(deleteUserStart());
 
-            const res = await fetch(`/api/user/delete/${currentUser.data._id}`,
+            const res = await fetch(`https://backend.instinger.com/api/user/delete/${currentUser.data._id}`,
                 {
                     method:"DELETE"
                 }
@@ -91,7 +91,7 @@ const Profile = () => {
     const handleSignOut = async () => {
         try {
             dispatch(signOutUserStart());
-            const res = await fetch("/api/user/signout", {
+            const res = await fetch("https://backend.instinger.com/api/user/signout", {
                 method: "GET",
                 credentials: "include"
             });
@@ -123,7 +123,7 @@ const Profile = () => {
 
         try {
             setShowImageListingError(false);
-            const res = await fetch(`/api/user/listings/${currentUser.data._id}`);
+            const res = await fetch(`https://backend.instinger.com/api/user/listings/${currentUser.data._id}`);
 
             const data = await res.json();
 
@@ -141,7 +141,7 @@ const Profile = () => {
 
     const handleListingDelete = async(listingId) => {
         try {
-            const res = await fetch(`/api/listing/delete/${listingId}`,{
+            const res = await fetch(`https://backend.instinger.com/api/listing/delete/${listingId}`,{
                 method:"DELETE"
             })
             const data = res.json();

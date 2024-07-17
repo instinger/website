@@ -15,7 +15,7 @@ const Blog = () => {
         const fetchAllListings = async()=>{
             setLoading(true);
             try {
-                const response = await fetch("/api/listing/get");
+                const response = await fetch("https://backend.instinger.com/api/listing/get");
                 const data = await response.json();
                 if(data.success===false){
                     console.log(data.message);
@@ -36,7 +36,7 @@ const Blog = () => {
 
     const showMoreClick = async() => {
         const startIndex = listings.length;
-            const res = await fetch(`/api/listing/get?startIndex=${startIndex}`);
+            const res = await fetch(`https://backend.instinger.com/api/listing/get?startIndex=${startIndex}`);
             const data = await res.json();
 
             if(data.data.length<9){

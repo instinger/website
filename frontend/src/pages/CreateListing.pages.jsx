@@ -107,7 +107,7 @@ const CreateListing = () => {
             setLoading(true);
             setError(false);
 
-            const res = await fetch("/api/listing/create",{
+            const res = await fetch("https://backend.instinger.com/api/listing/create",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json",
