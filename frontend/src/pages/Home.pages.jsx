@@ -54,7 +54,7 @@ const Home = () => {
                         <div className="flex justify-center mt-4">
                         <img
                         className="h-24 w-24 rounded-full"
-                        src="https://instinger.com/wp-content/uploads/2023/11/3d-minimal-programming-icon-coding-screen-web-development-concept-laptop-with-a-coding-screen-and-a-coding-icon-3d-illustration-png-1024x1016.webp"
+                        src="https://cdn-icons-png.flaticon.com/512/6352/6352331.png"
                         alt="Service"
                         />
                         </div>
@@ -86,7 +86,7 @@ const Home = () => {
                         <div className="flex justify-center mt-4">
                         <img
                         className="h-24 w-24 rounded-full"
-                        src="https://instinger.com/wp-content/uploads/2023/11/seo-removebg-preview-300x298.png"
+                        src="https://static.vecteezy.com/system/resources/previews/016/717/560/non_2x/seo-business-service-free-png.png"
                         alt="SEO"
                         />
                         </div>
