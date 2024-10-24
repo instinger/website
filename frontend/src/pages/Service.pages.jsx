@@ -16,7 +16,7 @@ const Service = () => {
                         <div className="flex justify-center mt-4">
                         <img
                         className="h-24 w-24 rounded-full"
-                        src="https://instinger.com/wp-content/uploads/2023/11/3d-minimal-programming-icon-coding-screen-web-development-concept-laptop-with-a-coding-screen-and-a-coding-icon-3d-illustration-png-1024x1016.webp"
+                        src="https://cdn-icons-png.flaticon.com/512/6352/6352331.png"
                         alt="Service"
                         />
                         </div>
