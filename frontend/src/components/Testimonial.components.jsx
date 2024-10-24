@@ -39,7 +39,7 @@ const testimonials = [
   },
   {
     id: 5,
-    name: "Amit Kumar",
+    name: "Ragini",
     text: "Within ten minutes of signing up, I already upgraded twice because I immediately wanted to give up testimonial solutions.",
     date: "May 24, 2024",
     rating: 4.4,
