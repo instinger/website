@@ -12,7 +12,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Aman sharma",
+    name: "Amar Gopal",
     text: "Super tool to create and import testimonials! I usually use the embed in my Notion templates and landing pages, and it's super easy to use. Generating testimonial images and wall of love and embedding in websites is easy as well, and I use Senja's generation to embed in the website I built in Framer.",
     date: "Aug 8, 2023",
     rating: 5,
@@ -21,7 +21,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Aritro De",
+    name: "Deepa Goel",
     text: "Within ten minutes of signing up, I already upgraded twice because I immediately wanted to give up testimonial solutions.",
     date: "Feb 11, 2024",
     rating: 4,
